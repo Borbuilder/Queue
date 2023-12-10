@@ -25,12 +25,18 @@ public:
 
 	void operator = (const TQueue& object);  //Оператор присваивания
 	void operator ==(const TQueue& object);  //Оператор сравненияя
-	void operator !=(const TQueue& object); //Оператор сравнения
+	void operator !=(const TQueue& object);  //Оператор сравнения
+
+	void output();                           //Вывод
 };
 
 template<class T>
 inline TQueue<T>::TQueue(int _size)
 {
+	if (_size < 1)
+	{
+		throw std::exception();
+	}
 	size = _size;
 	pMem = new T[size];
 	start = 0;
@@ -171,4 +177,18 @@ template<class T>
 inline void TQueue<T>::operator!=(const TQueue& object)
 {
 	return !(*this == object);
+}
+
+template<class T>
+inline void TQueue<T>::output()
+{
+	TQueue<T> this_tmp(*this);
+	std::cout << "(";
+	while (!(this_tmp.empty()))
+	{
+		std::cout <<" "<< this_tmp.Pop();
+		
+	}
+	std::cout << " )";
+	std::cout << std::endl;
 }
