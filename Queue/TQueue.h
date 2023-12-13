@@ -24,8 +24,8 @@ public:
 	T back();                                //Возращает значение, которое лежит в начале очереди
 
 	void operator = (const TQueue& object);  //Оператор присваивания
-	void operator ==(const TQueue& object);  //Оператор сравненияя
-	void operator !=(const TQueue& object);  //Оператор сравнения
+	bool operator ==(const TQueue& object);  //Оператор сравненияя
+	bool operator !=(const TQueue& object);  //Оператор сравнения
 
 	void output();                           //Вывод
 };
@@ -121,12 +121,20 @@ inline T TQueue<T>::Pop()
 template<class T>
 inline T TQueue<T>::front()
 {
+	if (this->empty())
+	{
+		throw std::exception();
+	}
 	return pMem[start];
 }
 
 template<class T>
 inline T TQueue<T>::back()
 {
+	if (this->empty())
+	{
+		throw std::exception();
+	}
 	return pMem[finish];
 }
 
@@ -150,7 +158,7 @@ void TQueue<T>::operator=(const TQueue& object)
 }
 
 template<class T>
-void TQueue<T>::operator==(const TQueue& object)
+bool TQueue<T>::operator==(const TQueue& object)
 {
 	if (count != object.count)
 	{
@@ -159,22 +167,22 @@ void TQueue<T>::operator==(const TQueue& object)
 	else
 	{
 		TQueue this_tmp = *this;
-		TQueue obj_tmp = *object;
+		TQueue obj_tmp = object;
 		while (!this_tmp.empty())
 		{
 			if (this_tmp.front() != obj_tmp.front())
 			{
 				return false;
 			}
-			this_tmp.pop();
-			obj_tmp.pop();
+			this_tmp.Pop();
+			obj_tmp.Pop();
 		}
 	}
 	return true;
 }
 
 template<class T>
-inline void TQueue<T>::operator!=(const TQueue& object)
+inline bool TQueue<T>::operator!=(const TQueue& object)
 {
 	return !(*this == object);
 }
@@ -182,6 +190,10 @@ inline void TQueue<T>::operator!=(const TQueue& object)
 template<class T>
 inline void TQueue<T>::output()
 {
+	if (this->empty())
+	{
+		throw std::exception();
+	}
 	TQueue<T> this_tmp(*this);
 	std::cout << "(";
 	while (!(this_tmp.empty()))
