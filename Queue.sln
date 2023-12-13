@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Queue", "Queue\Queue.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QueueTest", "QueueTests\QueueTest.vcxproj", "{C1DBBD7A-1A3D-4C7E-AA19-DD22CFB6EC22}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QAnimation", "QAnimation\QAnimation.vcxproj", "{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{C1DBBD7A-1A3D-4C7E-AA19-DD22CFB6EC22}.Release|x64.Build.0 = Release|x64
 		{C1DBBD7A-1A3D-4C7E-AA19-DD22CFB6EC22}.Release|x86.ActiveCfg = Release|Win32
 		{C1DBBD7A-1A3D-4C7E-AA19-DD22CFB6EC22}.Release|x86.Build.0 = Release|Win32
+		{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}.Debug|x64.ActiveCfg = Debug|x64
+		{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}.Debug|x64.Build.0 = Debug|x64
+		{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}.Debug|x86.ActiveCfg = Debug|Win32
+		{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}.Debug|x86.Build.0 = Debug|Win32
+		{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}.Release|x64.ActiveCfg = Release|x64
+		{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}.Release|x64.Build.0 = Release|x64
+		{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}.Release|x86.ActiveCfg = Release|Win32
+		{401BBB2A-AB26-4F6A-A60F-C1D4556AE50D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,7 @@ private:
 	int count;
 
 public:
-
+	TQueue();
 	TQueue(int _size);                       //Конструктор по умолчанию
 	~TQueue();                               //Деструктор
 	TQueue(const TQueue& object);            //Конструктор копирования
@@ -30,6 +30,10 @@ public:
 	void output();                           //Вывод
 };
 
+template <class T>
+inline TQueue<T>::TQueue():size(10)
+{
+}
 template<class T>
 inline TQueue<T>::TQueue(int _size)
 {
