@@ -27,6 +27,10 @@ public:
 	bool operator ==(const TQueue& object);  //Оператор сравненияя
 	bool operator !=(const TQueue& object);  //Оператор сравнения
 
+	int GetHeadIndex();                      //Получить индекс, на котором стоит первый элемент в очереди
+	int GetCurrentSize();                    //Получить текущий размер
+	int GetMaxSize();                        //Получить размер хранилища
+
 	void output();                           //Вывод
 };
 
@@ -189,6 +193,24 @@ template<class T>
 inline bool TQueue<T>::operator!=(const TQueue& object)
 {
 	return !(*this == object);
+}
+
+template<class T>
+inline int TQueue<T>::GetHeadIndex()
+{
+	return start;
+}
+
+template<class T>
+inline int TQueue<T>::GetCurrentSize()
+{
+	return (finish - start) + 1;
+}
+
+template<class T>
+inline int TQueue<T>::GetMaxSize()
+{
+	return size;
 }
 
 template<class T>

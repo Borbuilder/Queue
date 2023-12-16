@@ -18,24 +18,37 @@ namespace QAnimation {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
-		int p;
-		int q;
+		double p;
+		double q;
 		int PushCount = 0;
 		int PopCount = 0;;
 		TQueue<int>* CircleQueue;
 
 		int CenterX = 100;
-		int CenterY = 100;
-		int W = 100; 
-		int H = 100;
+		int CenterY = 200;
+		int W = 200;
+		int H = 200;
 
 		Random^ rnd = gcnew Random();
-		Graphics^ gr = CreateGraphics();
-	
-	
+		int startflag = 0; //Если начали рисовать, то флаг меняется, так мы поймём, что очередь уже создана
+
 		void Draw()
 		{
-			int Start = 360 * CircleQueue->front();
+			int Start = 360 * CircleQueue->GetHeadIndex() / CircleQueue->GetMaxSize();
+			int Finish = 360 * CircleQueue->GetCurrentSize() / CircleQueue->GetMaxSize();
+			Pen^ MyDrawPen = gcnew Pen(Color::Green);
+			MyDrawPen->Width = 10.0F;
+			Graphics^ gr = this->CreateGraphics();
+			gr->DrawArc(MyDrawPen, CenterX, CenterY, W, H, Start, Finish);
+		}
+		void Clear()
+		{
+			int Start = 360 * CircleQueue->GetHeadIndex() / CircleQueue->GetMaxSize();
+			int Finish = 360 * CircleQueue->GetCurrentSize() / CircleQueue->GetMaxSize();
+			Pen^ MyClearPen = gcnew Pen(Color::Snow);
+			MyClearPen->Width = 10.0F;
+			Graphics^ gr = this->CreateGraphics();
+			gr->DrawArc(MyClearPen, CenterX, CenterY, W, H, Start, Finish);
 		}
 	public:
 		MyForm(void)
@@ -156,6 +169,7 @@ namespace QAnimation {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"◼";
 			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// label1
 			// 
@@ -311,6 +325,7 @@ namespace QAnimation {
 			this->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -318,19 +333,28 @@ namespace QAnimation {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		int MaxSize = Convert::ToInt32(textBox1->Text);
-		CircleQueue = new TQueue<int>(MaxSize);
-		p = Convert::ToInt32(textBox2->Text);
-		q = Convert::ToInt32(textBox4->Text);
+		if (startflag == 0)
+		{
+			int MaxSize = Convert::ToInt32(textBox1->Text);
+			CircleQueue = new TQueue<int>(MaxSize);
+			p = Convert::ToDouble(textBox2->Text);
+			q = Convert::ToDouble(textBox4->Text);
+			startflag = 1;
+		}
 		timer1->Enabled = true;
-		//Graphics^ gr = CreateGraphics();
 	}
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+
+		if (!CircleQueue->empty())
+		{
+			Clear();
+		}
 
 		if (rnd->NextDouble() < p)
 		{
 			CircleQueue->Push(1);
 			PushCount++;
+
 		}
 		else {
 			if (rnd->NextDouble() < q)
@@ -339,9 +363,24 @@ namespace QAnimation {
 				PopCount++;
 			}
 		}
+		Draw();
+
+		label10->Text = Convert::ToString(PushCount);
+		label11->Text = Convert::ToString(PopCount);
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		timer1->Enabled = false;
 	}
+    private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+		timer1->Enabled = false;
+		Clear();
+		delete CircleQueue;
+		startflag = 0;
+		label10->Text = Convert::ToString(0);
+		label11->Text = Convert::ToString(0);
+    }
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -358,5 +397,8 @@ private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+
 };
 }
