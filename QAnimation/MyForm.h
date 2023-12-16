@@ -24,10 +24,10 @@ namespace QAnimation {
 		int PopCount = 0;;
 		TQueue<int>* CircleQueue;
 
-		int CenterX = 100;
-		int CenterY = 200;
-		int W = 200;
-		int H = 200;
+		int CenterX = 80;
+		int CenterY = 80;
+		int W = 150;
+		int H = 150;
 
 		Random^ rnd = gcnew Random();
 		int startflag = 0; //Если начали рисовать, то флаг меняется, так мы поймём, что очередь уже создана
@@ -70,6 +70,9 @@ namespace QAnimation {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Label^ label14;
+	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::Label^ label13;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Timer^ timer1;
 	private: System::Windows::Forms::Button^ button2;
@@ -120,6 +123,9 @@ namespace QAnimation {
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -189,12 +195,13 @@ namespace QAnimation {
 			// 
 			this->textBox1->BackColor = System::Drawing::Color::Chartreuse;
 			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.5F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.5F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->textBox1->Location = System::Drawing::Point(626, 104);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(74, 20);
+			this->textBox1->Size = System::Drawing::Size(74, 25);
 			this->textBox1->TabIndex = 4;
+			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
 			// 
 			// label2
@@ -215,12 +222,13 @@ namespace QAnimation {
 			// 
 			this->textBox2->BackColor = System::Drawing::Color::Chartreuse;
 			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.5F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.5F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->textBox2->Location = System::Drawing::Point(626, 144);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(74, 20);
+			this->textBox2->Size = System::Drawing::Size(74, 25);
 			this->textBox2->TabIndex = 6;
+			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// label3
 			// 
@@ -232,7 +240,7 @@ namespace QAnimation {
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(247, 20);
 			this->label3->TabIndex = 7;
-			this->label3->Text = L"Вероятность добавления:\r\n";
+			this->label3->Text = L"Вероятность исключения:\r\n";
 			this->label3->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// label8
@@ -267,12 +275,13 @@ namespace QAnimation {
 			// 
 			this->textBox4->BackColor = System::Drawing::Color::Chartreuse;
 			this->textBox4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.5F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->textBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.5F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->textBox4->Location = System::Drawing::Point(626, 187);
 			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(74, 20);
+			this->textBox4->Size = System::Drawing::Size(74, 25);
 			this->textBox4->TabIndex = 10;
+			this->textBox4->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->textBox4->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox4_TextChanged);
 			// 
 			// label10
@@ -303,12 +312,53 @@ namespace QAnimation {
 			this->label11->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->label11->Click += gcnew System::EventHandler(this, &MyForm::label11_Click);
 			// 
+			// label12
+			// 
+			this->label12->BackColor = System::Drawing::Color::CornflowerBlue;
+			this->label12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.5F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label12->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->label12->Location = System::Drawing::Point(370, 374);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(247, 20);
+			this->label12->TabIndex = 13;
+			this->label12->Text = L"Элементов в очереди:\r\n";
+			this->label12->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// label13
+			// 
+			this->label13->BackColor = System::Drawing::Color::Gold;
+			this->label13->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->label13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.5F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label13->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->label13->Location = System::Drawing::Point(626, 374);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(74, 20);
+			this->label13->TabIndex = 14;
+			this->label13->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label14->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->label14->Location = System::Drawing::Point(44, 374);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(0, 25);
+			this->label14->TabIndex = 15;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Snow;
 			this->ClientSize = System::Drawing::Size(712, 485);
+			this->Controls->Add(this->label14);
+			this->Controls->Add(this->label13);
+			this->Controls->Add(this->label12);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->textBox4);
@@ -333,40 +383,66 @@ namespace QAnimation {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+		label14->Text = " ";
+		p = Convert::ToDouble(textBox2->Text);
+	    q = Convert::ToDouble(textBox4->Text);
 		if (startflag == 0)
 		{
 			int MaxSize = Convert::ToInt32(textBox1->Text);
 			CircleQueue = new TQueue<int>(MaxSize);
-			p = Convert::ToDouble(textBox2->Text);
-			q = Convert::ToDouble(textBox4->Text);
 			startflag = 1;
+			for (int i = 0; i < 10; i++)
+		    {
+				CircleQueue->Push(1);
+			}
+			
 		}
+		
+		
 		timer1->Enabled = true;
 	}
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-
-		if (!CircleQueue->empty())
+		try
 		{
-			Clear();
-		}
+            if (!CircleQueue->empty())
+		    {
+			     Clear();
+		    }
 
-		if (rnd->NextDouble() < p)
-		{
-			CircleQueue->Push(1);
-			PushCount++;
+		    if (rnd->NextDouble() < p)
+		    {
+			      CircleQueue->Push(1);
+			      PushCount++;
 
-		}
-		else {
-			if (rnd->NextDouble() < q)
+		    }
+		    else 
 			{
-				CircleQueue->Pop();
-				PopCount++;
-			}
-		}
-		Draw();
+			     if (rnd->NextDouble() < q)
+			     {
+				      CircleQueue->Pop();
+				      PopCount++;
+			     }
+		    }
+		    Draw();
 
-		label10->Text = Convert::ToString(PushCount);
-		label11->Text = Convert::ToString(PopCount);
+		   label10->Text = Convert::ToString(PushCount);
+		   label11->Text = Convert::ToString(PopCount);
+		   label13->Text = Convert::ToString(CircleQueue->NumberOfElements());
+		}
+		catch (const std::exception& ex)
+		{
+			label14->Text = "Error!";
+			timer1->Enabled = false;
+			Clear();
+			delete CircleQueue;
+			startflag = 0;
+			PushCount = 0;
+			PopCount = 0;
+			label10->Text = Convert::ToString(0);
+			label11->Text = Convert::ToString(0);
+			label13->Text = Convert::ToString(0);
+		}
+		
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -378,8 +454,11 @@ namespace QAnimation {
 		Clear();
 		delete CircleQueue;
 		startflag = 0;
+		PushCount = 0;
+		PopCount = 0;
 		label10->Text = Convert::ToString(0);
 		label11->Text = Convert::ToString(0);
+		label13->Text = Convert::ToString(0);
     }
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}

@@ -30,6 +30,7 @@ public:
 	int GetHeadIndex();                      //Получить индекс, на котором стоит первый элемент в очереди
 	int GetCurrentSize();                    //Получить текущий размер
 	int GetMaxSize();                        //Получить размер хранилища
+	int NumberOfElements();                  //Количество элементов в очереди
 
 	void output();                           //Вывод
 };
@@ -211,6 +212,12 @@ template<class T>
 inline int TQueue<T>::GetMaxSize()
 {
 	return size;
+}
+
+template<class T>
+inline int TQueue<T>::NumberOfElements()
+{
+	return count;;
 }
 
 template<class T>

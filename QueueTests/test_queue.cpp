@@ -232,3 +232,28 @@ TEST(TQueue, can_get_right_back)
 	q.Push(2);
 	EXPECT_EQ(2, q.back());
 }
+
+TEST(TQueue, can_get_right_head_index)
+{
+	TQueue<int> q(5);
+	q.Push(1);
+	q.Push(2);
+	int tmp = q.Pop();
+	EXPECT_EQ(1, q.GetHeadIndex());
+}
+
+TEST(TQueue, can_get_right_current_size)
+{
+	TQueue<int> q(5);
+	q.Push(0);
+	q.Push(1);
+	q.Push(2);
+	int tmp = q.Pop();
+	EXPECT_EQ(2, q.GetCurrentSize());
+}
+
+TEST(TQueue, can_get_right_max_size)
+{
+	TQueue<int> q(5);
+	EXPECT_EQ(5, q.GetMaxSize());
+}
