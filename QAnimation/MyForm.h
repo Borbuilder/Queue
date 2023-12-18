@@ -31,7 +31,7 @@ namespace QAnimation {
 
 		Random^ rnd = gcnew Random();
 		int startflag = 0; //Если начали рисовать, то флаг меняется, так мы поймём, что очередь уже создана
-
+		int exflag = 0;
 		void Draw()
 		{
 			int Start = 360 * CircleQueue->GetHeadIndex() / CircleQueue->GetMaxSize();
@@ -404,25 +404,23 @@ namespace QAnimation {
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 		try
 		{
+			
             if (!CircleQueue->empty())
 		    {
 			     Clear();
 		    }
 
-		    if (rnd->NextDouble() < p)
-		    {
-			      CircleQueue->Push(1);
-			      PushCount++;
-
-		    }
-		    else 
+			if (rnd->NextDouble() < p)
 			{
-			     if (rnd->NextDouble() < q)
-			     {
-				      CircleQueue->Pop();
-				      PopCount++;
-			     }
-		    }
+				CircleQueue->Push(1);
+				PushCount++;
+
+			}
+			if (rnd->NextDouble() < q)
+			{
+				CircleQueue->Pop();
+				PopCount++;
+			}
 		    Draw();
 
 		   label10->Text = Convert::ToString(PushCount);
@@ -441,6 +439,7 @@ namespace QAnimation {
 			label10->Text = Convert::ToString(0);
 			label11->Text = Convert::ToString(0);
 			label13->Text = Convert::ToString(0);
+			exflag = 1;
 		}
 		
 	}
@@ -451,14 +450,17 @@ namespace QAnimation {
     private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		
 		timer1->Enabled = false;
-		Clear();
-		delete CircleQueue;
-		startflag = 0;
-		PushCount = 0;
-		PopCount = 0;
-		label10->Text = Convert::ToString(0);
-		label11->Text = Convert::ToString(0);
-		label13->Text = Convert::ToString(0);
+		if (exflag == 0)
+		{
+		    Clear();
+		    delete CircleQueue;
+		    startflag = 0;
+		    PushCount = 0;
+		    PopCount = 0;
+		    label10->Text = Convert::ToString(0);
+		    label11->Text = Convert::ToString(0);
+		    label13->Text = Convert::ToString(0);
+		}
     }
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}

@@ -205,7 +205,7 @@ inline int TQueue<T>::GetHeadIndex()
 template<class T>
 inline int TQueue<T>::GetCurrentSize()
 {
-	return (finish - start) + 1;
+	return count;
 }
 
 template<class T>
