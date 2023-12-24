@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{76fc9cea-5396-438b-8a0c-34bd4ebee6b7}</ProjectGuid>
-    <RootNamespace>Queue</RootNamespace>
+    <ProjectGuid>{cb485571-9af7-4d9b-bb12-b1064daecaf2}</ProjectGuid>
+    <RootNamespace>QueueonForwardList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="TQueue.h" />
+    <ClInclude Include="TLQueue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="TQueue.cpp" />
+    <ClCompile Include="TLQueue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

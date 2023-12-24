@@ -2,7 +2,7 @@
 
 #include<string>
 #include<msclr\marshal_cppstd.h>
-#include"../Queue/TQueue.h"
+#include"../Queue_on_ForwardList/TLQueue.h"
 
 namespace QAnimation {
 
@@ -22,7 +22,7 @@ namespace QAnimation {
 		double q;
 		int PushCount = 0;
 		int PopCount = 0;;
-		TQueue<int>* CircleQueue;
+		TLQueue<int>* CircleQueue;
 
 		int CenterX = 80;
 		int CenterY = 80;
@@ -389,7 +389,7 @@ namespace QAnimation {
 		if (startflag == 0)
 		{
 			int MaxSize = Convert::ToInt32(textBox1->Text);
-			CircleQueue = new TQueue<int>(MaxSize);
+			CircleQueue = new TLQueue<int>(MaxSize);
 			startflag = 1;
 			for (int i = 0; i < 10; i++)
 		    {
